@@ -15,20 +15,20 @@
 			background: #EEE;
 		}
 
+		.site {
+			position: relative;
+		}
+
 		.cabecalho {
 			background: navy;
 			color: #FFF;
 			padding: 1.5rem;
 			text-align: center;
 			font-size: 1.5em;
-		}
-
-		.cabecalho--fixo {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
 			box-shadow: 0 2px 7px rgba(0,0,0,0.2);
+			position: -webkit-sticky;
+			position: sticky;
+			top: 0; /* apenas para 'ativar' o posicionamento */
 		}
 
 		.container {
@@ -47,37 +47,6 @@
 			height: 1em;
 		}
 	</style>
-	<script>
-		function init() {
-			var cabecalho = document.querySelector('.cabecalho');
-			var cabecalhoEspaco = document.querySelector('.cabecalho-espaco');
-			var cabecalhoOffset = cabecalho.offsetTop;
-
-			function verificaCabecalho() {
-				var scrollTop = window.scrollY;
-				var cabecalhoAltura = cabecalho.offsetHeight;
-
-				if(scrollTop >= cabecalhoOffset) {
-					// rolagem da página passou do elemento, vamos fixá-lo
-					cabecalho.classList.add('cabecalho--fixo');
-					
-					// ativa cabecalho-espaco para ocupar o espaço perdido
-					cabecalhoEspaco.style.height = cabecalhoAltura + 'px';
-				} else {
-					// retira a classe adicional do elemento
-					cabecalho.classList.remove('cabecalho--fixo');
-
-					// retira a altura do cabecalho-espaco
-					cabecalhoEspaco.style.height = 0;
-				}
-			}
-
-			window.addEventListener('scroll', verificaCabecalho);
-			window.addEventListener('resize', verificaCabecalho);
-		}
-
-		window.addEventListener('load', init);
-	</script>
 </head>
 <body>
 
@@ -88,7 +57,6 @@
 			Cabeçalho fixo
 		</div>
 	</header>
-	<div class="cabecalho-espaco"></div>
 	<main class="conteudo">
 		<div class="container">
 			<p>
